@@ -1,3 +1,13 @@
+/*
+** Challenge: Find the shortest path
+** Rocio Salguero
+** Given a specific graph find the Multiple Shortest Paths in a Weighted DAG
+**
+** INPUT: weighted matrix.
+** OUTPUT: A list of 3 shortest paths in the graph. Outputs to a file. 
+*/
+
+
 #include <stdio.h>
 #include <math.h>
 #include <iostream>
@@ -6,6 +16,7 @@
 
 using namespace std;
 
+//generate all possible paths with the vetices 
 void printPowerSet(char *set, int set_size)
 {
 	ofstream power("powerset.txt");
@@ -28,7 +39,7 @@ void printPowerSet(char *set, int set_size)
 	}
 }
 
-
+//Sort out the valid paths based on the graphs conditions. 
 bool validRange(string set) {
 	int length = set.length(); 
 	//valid is more than 2 nodes and less than 9 nodes
@@ -38,6 +49,7 @@ bool validRange(string set) {
 		return true;
 }
 
+//Sort out the valid paths based on the graphs conditions. 
 bool decreasing(string set) {
 	int length = set.length(); 
 
@@ -53,6 +65,7 @@ bool decreasing(string set) {
 
 }
 
+//Sort out paths based on the challenge condition. The path must start at zero
 bool startingZero(string set) {
 	if (set[0] == '0')
 		return true;
@@ -60,6 +73,7 @@ bool startingZero(string set) {
 
 }
 
+//Calculate the path length of a given path 
 int pathLength(int aj[][9], string path) {
 	int totalPath=0; 
 	
@@ -73,6 +87,7 @@ int pathLength(int aj[][9], string path) {
 	return totalPath;
 }
 
+//Check if any two paths are the same so there is no duplicate vertices. 
 bool checkSimilar(string one, string two, string three) {
 	bool similar = false; 
 	int i, j;
@@ -104,7 +119,7 @@ bool checkSimilar(string one, string two, string three) {
 	return similar; 
 }
 
-/*Driver progr am to test printPowerSet*/
+
 int main()
 {
 	
